@@ -1,19 +1,15 @@
 import google.generativeai as genai
 import streamlit as st
 
-#setting up the API key
+
 f = open("keys/gemini_api_key.txt")
 key = f.read()
 genai.configure(api_key = key)
 
-#setting up the headers
 st.title("👨‍💻Your Code Review Colleague")
 st.subheader('Issues with your coding? Review or clarify your codebase now!')
-
-#taking user input
 user_prompt = st.text_area("Enter your code...")
 
-#if the button is clicked, generate responses
 if st.button("Review") == True:
     model = genai.GenerativeModel(model_name='models/gemini-1.5-pro-latest',
                               system_instruction="""You are a friendly AI assistant.
